@@ -10,7 +10,7 @@ const form = document.querySelector("form");
 
 const bookTitle = document.getElementById("title");
 const bookYear = document.getElementById("year");
-
+const bookReadStatus = document.getElementById("readStatus");
 
 class Book {
     constructor(title, year, readStatus) {
@@ -97,11 +97,9 @@ cancelBtn.addEventListener("click", (e) => {
 
 // Prevent the "confirm" button from submitting a fake form
 form.addEventListener("submit", (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     dialog.close();
-    
-    console.log(bookTitle.value, bookYear.value)
-    
-    let newBook = new Book(bookTitle.value, bookYear.value);
+        
+    let newBook = new Book(bookTitle.value, bookYear.value, bookReadStatus.value);
     addBookToLibrary(newBook);
 })

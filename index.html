@@ -17,8 +17,11 @@
             <input type="text" id="title" name="title" autocomplete="off" required>
             <label for="year">Year:</label>
             <input type="number" id="year" name="year" autocomplete="off" required><br><br>
-            <label for="readStatus">Read Status:</label>
-            <input type="number" id="readStatus" name="readStatus" autocomplete="off" required><br><br>
+            <label for="readStatus" style="margin-bottom: 10px;">Read Status:</label>
+            <select name="readStatus" id="readStatus" required style="margin-bottom: 10px;">
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
             <div>
                 <button type="button" id="cancel">Cancel</button>
                 <input type="submit" id="submit" value="submit">
