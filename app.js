@@ -13,7 +13,7 @@ class Book {
 function addBookToLibrary(book) {
     // Add the book into the library array first 
     myLibrary.push(book);
-   
+  
     // create new row 
     const row = document.createElement("tr");
 
@@ -26,6 +26,17 @@ function addBookToLibrary(book) {
     const yearCell = document.createElement("td");
     yearCell.textContent = book.year;
     row.appendChild(yearCell);
+
+    // create and append delete cell
+    const deleteCell = document.createElement("td");
+    let delBtn = document.createElement("button");
+    delBtn.textContent = "Delete";
+    delBtn.addEventListener("click", () => {
+        const parentRow = delBtn.closest("tr");
+        parentRow.remove();
+    })
+    deleteCell.appendChild(delBtn);
+    row.appendChild(deleteCell);
 
     // append the row to the table body
     tBody.appendChild(row);
