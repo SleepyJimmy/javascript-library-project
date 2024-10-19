@@ -35,8 +35,8 @@ function addBookToLibrary(book) {
 
 
 
-const book1 = new Book("firstbook", "1997");
-const book2 = new Book("secondbook", "1998");
+const book1 = new Book("Moby Dick", "1997");
+const book2 = new Book("Secret Book", "1998");
 addBookToLibrary(book1);
 addBookToLibrary(book2);
 
@@ -49,6 +49,7 @@ const confirmBtn = document.getElementById("confirmBtn");
 const bookTitle = document.getElementById("title");
 const bookYear = document.getElementById("year");
 
+
 // "show the dialog" button opens the dialog modally
 showDialog.addEventListener("click", () => {
     dialog.querySelector("form").reset();   // resets the form whenever it is opened
@@ -58,12 +59,15 @@ showDialog.addEventListener("click", () => {
 
 // cancel button closes the dialog 
 dialog.addEventListener("close", (e) => {
-    outputBox.value = dialog.returnValue === "cancel" ? "No Return Value." : `ReturnValue: ${dialog.returnValue}.`
+    outputBox.innerHTML = dialog.returnValue === "cancel" ? "" : `Book added: <br> Title: ${bookTitle.value} Year: ${bookYear.value}.`
 })
 
 
 // Prevent the "confirm" button from submitting a fake form
 confirmBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    dialog.close(bookTitle.value + " " + bookYear.value);
+    dialog.close();
+    
+    let newBook = new Book(bookTitle.value, bookYear.value);
+    addBookToLibrary(newBook);
 })
