@@ -13,11 +13,7 @@ function addBookToLibrary(book) {
 
 
 function displayLibrary() {
-    console.log(`${"=".repeat(20)}`);
-    for (let i = 0; i < myLibrary.length; i++) {
-        console.log(`Book ${i + 1}:\nTitle: ${myLibrary[i].title}\nYear Published: ${myLibrary[i].year}`);
-        console.log(`${"=".repeat(20)}`);
-    }
+    console.table(myLibrary);
 }
 
 const book1 = new Book("firstbook", "1997");
@@ -26,3 +22,30 @@ addBookToLibrary(book1);
 addBookToLibrary(book2);
 
 displayLibrary();
+
+const dialog = document.querySelector("dialog");
+const showDialog = document.getElementById("showDialog");
+const outputBox = document.querySelector("output");
+const confirmBtn = document.getElementById("confirmBtn");
+
+const bookTitle = document.getElementById("title");
+const bookYear = document.getElementById("year");
+
+// "show the dialog" button opens the dialog modally
+showDialog.addEventListener("click", () => {
+    dialog.querySelector("form").reset();   // resets the form whenever it is opened
+    dialog.showModal();
+})
+
+
+// cancel button closes the dialog 
+dialog.addEventListener("close", (e) => {
+    outputBox.value = dialog.returnValue === "cancel" ? "No Return Value." : `ReturnValue: ${dialog.returnValue}.`
+})
+
+
+// Prevent the "confirm" button from submitting a fake form
+confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close(bookTitle.value + " " + bookYear.value);
+})
