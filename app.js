@@ -1,4 +1,7 @@
 const myLibrary = [];
+const table = document.querySelector("table");
+const tBody = document.querySelector("table tbody")
+
 
 class Book {
     constructor(title, year) {
@@ -8,20 +11,35 @@ class Book {
 }
 
 function addBookToLibrary(book) {
+    // Add the book into the library array first 
     myLibrary.push(book);
+   
+    // create new row 
+    const row = document.createElement("tr");
+
+    // create and append title cell
+    const titleCell = document.createElement("td");
+    titleCell.textContent = book.title;
+    row.appendChild(titleCell);
+
+    // create and append year cell
+    const yearCell = document.createElement("td");
+    yearCell.textContent = book.year;
+    row.appendChild(yearCell);
+
+    // append the row to the table body
+    tBody.appendChild(row);
+    
 }
 
 
-function displayLibrary() {
-    console.table(myLibrary);
-}
+
 
 const book1 = new Book("firstbook", "1997");
 const book2 = new Book("secondbook", "1998");
 addBookToLibrary(book1);
 addBookToLibrary(book2);
 
-displayLibrary();
 
 const dialog = document.querySelector("dialog");
 const showDialog = document.getElementById("showDialog");
