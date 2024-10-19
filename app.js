@@ -10,10 +10,7 @@ class Book {
     }
 }
 
-function addBookToLibrary(book) {
-    // Add the book into the library array first 
-    myLibrary.push(book);
-  
+function addBookToLibrary(book) { 
     // create new row 
     const row = document.createElement("tr");
 
@@ -55,7 +52,8 @@ addBookToLibrary(book2);
 const dialog = document.querySelector("dialog");
 const showDialog = document.getElementById("showDialog");
 const outputBox = document.querySelector("output");
-const confirmBtn = document.getElementById("confirmBtn");
+const confirmBtn = document.getElementById("submit");
+const form = document.querySelector("form");
 
 const bookTitle = document.getElementById("title");
 const bookYear = document.getElementById("year");
@@ -75,9 +73,11 @@ dialog.addEventListener("close", (e) => {
 
 
 // Prevent the "confirm" button from submitting a fake form
-confirmBtn.addEventListener("click", (e) => {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
     dialog.close();
+    
+    console.log(bookTitle.value, bookYear.value)
     
     let newBook = new Book(bookTitle.value, bookYear.value);
     addBookToLibrary(newBook);
