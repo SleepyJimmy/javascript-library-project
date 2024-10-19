@@ -5,6 +5,7 @@ const dialog = document.querySelector("dialog");
 const showDialog = document.getElementById("showDialog");
 const outputBox = document.querySelector("output");
 const confirmBtn = document.getElementById("submit");
+const cancelBtn = document.getElementById("cancel");
 const form = document.querySelector("form");
 
 const bookTitle = document.getElementById("title");
@@ -89,14 +90,14 @@ showDialog.addEventListener("click", () => {
 
 
 // cancel button closes the dialog 
-dialog.addEventListener("close", (e) => {
-    outputBox.innerHTML = dialog.returnValue === "cancel" ? "" : `Book added: <br> Title: ${bookTitle.value} Year: ${bookYear.value}.`
+cancelBtn.addEventListener("click", (e) => {
+    dialog.close();
 })
 
 
 // Prevent the "confirm" button from submitting a fake form
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     dialog.close();
     
     console.log(bookTitle.value, bookYear.value)
